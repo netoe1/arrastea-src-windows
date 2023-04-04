@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEditor;
 
 public class DragDropCores :
     MonoBehaviour,
@@ -44,6 +45,7 @@ public class DragDropCores :
     {
 
         rt.anchoredPosition += eventData.delta / CenaDinamicaCores.get_scaleFactor();
+        ConfiguraCursor.set_cursor("NewAssets/Cursor/cursor_grab_configurado");
       
     }
 
