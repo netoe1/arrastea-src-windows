@@ -1,16 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 public class ConfiguraCursor : MonoBehaviour
 {
-   public static void set_cursor(string __path)
-   {
-        PlayerSettings.defaultCursor = Resources.Load<Texture2D>(__path);
-        Debug.Log("Set cursor");
-   }
+
+    public static ConfiguraCursor instance;
+    public Texture2D cursor;
+    public Texture2D cursorClick;
+    public Texture2D cursorDrag;
+
+
+    void Awake()
+    {
+        instance = this;
+        ConfiguraCursor.instance.ActiveCursor();
+        
+    }
+
+
+    public void ActiveCursorClick()
+    {
+        Cursor.SetCursor(cursorClick, Vector2.zero, CursorMode.Auto);
+    }
+
+    public  void ActiveCursorDrag()
+    {
+        Cursor.SetCursor(cursorDrag, Vector2.zero, CursorMode.Auto);
+    }
+
+    public void ActiveCursor()
+    {
+        Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
+    }
+
 }

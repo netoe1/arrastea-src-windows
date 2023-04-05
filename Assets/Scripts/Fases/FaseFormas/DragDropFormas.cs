@@ -27,6 +27,7 @@ public class DragDropFormas
 
     void Awake()
     {
+        ConfiguraCursor.instance.ActiveCursor();
         Debug.Log("DragnDropAtivado");
         rt = GetComponent<RectTransform>();
         posicaoInicial = rt.anchoredPosition;
@@ -42,10 +43,12 @@ public class DragDropFormas
     public void OnDrag(PointerEventData eventData)
     {
         rt.anchoredPosition += eventData.delta / CenaDinamicaFormas.get_scaleFactor();
+        ConfiguraCursor.instance.ActiveCursorDrag();
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        ConfiguraCursor.instance.ActiveCursor();
         cg.alpha += alpha;
         cg.blocksRaycasts = true;
     }
@@ -53,5 +56,7 @@ public class DragDropFormas
     public void OnPointerDown(PointerEventData eventData)
     {
         ConfiguraSom.tocarSomFormas(this.gameObject.tag);
+        ConfiguraCursor.instance.ActiveCursor();
+
     }
 }

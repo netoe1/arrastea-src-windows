@@ -25,6 +25,7 @@ public class DragDropPintarFrutas :
 
     void Awake()
     {
+        ConfiguraCursor.instance.ActiveCursor();
         rt = GetComponent<RectTransform>();
         posicaoInicial = rt.anchoredPosition;
 
@@ -41,11 +42,13 @@ public class DragDropPintarFrutas :
     {
 
         rt.anchoredPosition += eventData.delta / CenaDinamicaPintarFrutas.get_scaleFactor();
-      
+        ConfiguraCursor.instance.ActiveCursorDrag();
+
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        ConfiguraCursor.instance.ActiveCursor();
         cg.alpha += alpha;
         cg.blocksRaycasts = true;
         rt.anchoredPosition = posicaoInicial;
@@ -54,5 +57,6 @@ public class DragDropPintarFrutas :
     public void OnPointerDown(PointerEventData eventData)
     {
         ConfiguraSom.tocarSomPintarFrutas(this.gameObject.tag);
+        ConfiguraCursor.instance.ActiveCursor();
     }
 }

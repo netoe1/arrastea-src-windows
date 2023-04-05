@@ -29,7 +29,7 @@ public class DragDropCores :
 
     void Awake()
     {
-        
+        ConfiguraCursor.instance.ActiveCursor();
         rt = GetComponent<RectTransform>();
         posicaoInicial = rt.anchoredPosition;
         cg = GetComponent<CanvasGroup>();
@@ -45,12 +45,13 @@ public class DragDropCores :
     {
 
         rt.anchoredPosition += eventData.delta / CenaDinamicaCores.get_scaleFactor();
-        ConfiguraCursor.set_cursor("NewAssets/Cursor/cursor_grab_configurado");
+        ConfiguraCursor.instance.ActiveCursorDrag();
       
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        ConfiguraCursor.instance.ActiveCursor();
         cg.alpha += alpha;
         cg.blocksRaycasts = true;
         rt.anchoredPosition = posicaoInicial;
@@ -59,5 +60,6 @@ public class DragDropCores :
     public void OnPointerDown(PointerEventData eventData)
     {
         ConfiguraSom.tocarSomCores(this.gameObject.tag);
+        ConfiguraCursor.instance.ActiveCursor();
     }
 }
